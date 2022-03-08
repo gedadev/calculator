@@ -1,3 +1,20 @@
+function operate(operation, x, y){
+    switch(operation){
+        case 'add':
+            add(x, y);
+            break;
+        case 'subtract':
+            subtract(x, y);
+            break;
+        case 'multiply':
+            multiply(x, y);
+            break;
+        case 'divide':
+            divide(x, y);
+            break;
+    }
+}
+
 function add(x, y){
     console.log(x + y);
 }
@@ -14,7 +31,5 @@ function divide(x, y){
     console.log(x / y);
 }
 
-add(2, 3);
-subtract(5, 2);
-multiply(3, 2);
-divide(5, 2);
+
+operate('divide', 5, 6);
