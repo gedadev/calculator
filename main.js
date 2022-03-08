@@ -1,43 +1,63 @@
 const digits = document.querySelectorAll('.digit');
+const operators = document.querySelectorAll('.operator');
+const display = document.querySelector('.display');
+const equals = document.querySelector('.equals');
+const clear = document.querySelector('.clear');
+let x;
+let y;
+let operation;
 
 digits.forEach((digit) => {
     digit.addEventListener('click', () => {
-        console.log(digit.id);
+        display.textContent += digit.id;
     });
+});
+
+operators.forEach((operator) => {
+    operator.addEventListener('click', () => {
+        x = display.textContent;
+        operation = operator.id;
+        display.textContent = '';
+    });
+});
+
+equals.addEventListener('click', () => {
+    y = display.textContent;
+    display.textContent = operate(operation, x, y);
+});
+
+clear.addEventListener('click', () => {
+    display.textContent = '';
+    x = 0;
+    y = 0;
+    operation = '';
 });
 
 function operate(operation, x, y){
     switch(operation){
         case 'add':
-            add(x, y);
-            break;
+            return add(x, y);
         case 'subtract':
-            subtract(x, y);
-            break;
+            return subtract(x, y);
         case 'multiply':
-            multiply(x, y);
-            break;
+            return multiply(x, y);
         case 'divide':
-            divide(x, y);
-            break;
+            return divide(x, y);
     }
 }
 
 function add(x, y){
-    console.log(x + y);
+    return parseInt(x) + parseInt(y);
 }
 
 function subtract(x, y){
-    console.log(x - y);
+    return x - y;
 }
 
 function multiply(x, y){
-    console.log(x * y);
+    return x * y;
 }
 
 function divide(x, y){
-    console.log(x / y);
+    return x / y;
 }
-
-
-operate('divide', 5, 6);
