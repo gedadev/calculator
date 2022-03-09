@@ -1,10 +1,44 @@
 * {
     font-family: 'Courier New', Courier, monospace;
+    font-size: 50px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
 }
 
 .display {
-    width: 200px;
-    height: 20px;
+    width: 600px;
+    height: 100px;
+    padding-bottom: 5px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
     border-style: solid;
-    border-width: 1px;
+    border-width: 5px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 600px;
+    height: 600px;
+}
+
+button {
+    border-radius: 0%;
+    border: none;
+    background-color: rgb(151, 151, 151);
+}
+
+button.digit {
+    background-color: rgb(151, 151, 151);
+}
+
+button.operator {
+    background-color: rgb(223, 170, 35);
 }
