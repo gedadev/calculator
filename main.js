@@ -3,9 +3,9 @@ const operators = document.querySelectorAll('.operator');
 const display = document.querySelector('.display');
 const equals = document.querySelector('.equals');
 const clear = document.querySelector('.clear');
-let x;
-let y;
-let operation;
+let x = 0;
+let y = 0;
+let operation = '';
 
 digits.forEach((digit) => {
     digit.addEventListener('click', () => {
@@ -16,13 +16,14 @@ digits.forEach((digit) => {
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
         x = display.textContent;
+        y = operate(operation, x, y);
         operation = operator.id;
         display.textContent = '';
     });
 });
 
 equals.addEventListener('click', () => {
-    y = display.textContent;
+    x = display.textContent;
     display.textContent = operate(operation, x, y);
 });
 
@@ -43,6 +44,8 @@ function operate(operation, x, y){
             return multiply(x, y);
         case 'divide':
             return divide(x, y);
+        default:
+            return x;
     }
 }
 
@@ -51,7 +54,7 @@ function add(x, y){
 }
 
 function subtract(x, y){
-    return x - y;
+    return y - x;
 }
 
 function multiply(x, y){
@@ -59,5 +62,5 @@ function multiply(x, y){
 }
 
 function divide(x, y){
-    return x / y;
+    return y / x;
 }
