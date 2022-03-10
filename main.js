@@ -1,6 +1,7 @@
 const digits = document.querySelectorAll('.digit');
 const operators = document.querySelectorAll('.operator');
 const display = document.querySelector('.display');
+const displayHistory = document.querySelector('.history');
 const equals = document.querySelector('.equals');
 const clear = document.querySelector('.clear');
 let x = 0;
@@ -10,11 +11,13 @@ let operation = '';
 digits.forEach((digit) => {
     digit.addEventListener('click', () => {
         display.textContent += digit.id;
+        displayHistory.textContent += digit.id;
     });
 });
 
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
+        displayHistory.textContent += operator.id;
         x = display.textContent;
         y = operate(operation, x, y);
         operation = operator.id;
@@ -29,6 +32,7 @@ equals.addEventListener('click', () => {
 
 clear.addEventListener('click', () => {
     display.textContent = '';
+    displayHistory.textContent = '';
     x = 0;
     y = 0;
     operation = '';
@@ -36,13 +40,13 @@ clear.addEventListener('click', () => {
 
 function operate(operation, x, y){
     switch(operation){
-        case 'add':
+        case '+':
             return add(x, y);
-        case 'subtract':
+        case '-':
             return subtract(x, y);
-        case 'multiply':
+        case 'x':
             return multiply(x, y);
-        case 'divide':
+        case '/':
             return divide(x, y);
         default:
             return x;
