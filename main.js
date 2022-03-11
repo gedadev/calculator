@@ -4,14 +4,20 @@ const display = document.querySelector('.display');
 const displayHistory = document.querySelector('.history');
 const equals = document.querySelector('.equals');
 const clear = document.querySelector('.clear');
+const del = document.querySelector('.delete');
 let x = 0;
 let y = 0;
 let operation = '';
 
 digits.forEach((digit) => {
     digit.addEventListener('click', () => {
-        display.textContent += digit.id;
-        displayHistory.textContent += digit.id;
+        if(digit.id === '.' && !display.textContent.includes('.')){
+            display.textContent += digit.id;
+            displayHistory.textContent += digit.id;
+        } else if (digit.id !== '.'){
+            display.textContent += digit.id;
+            displayHistory.textContent += digit.id;
+        }
     });
 });
 
@@ -38,23 +44,28 @@ clear.addEventListener('click', () => {
     operation = '';
 });
 
+del.addEventListener('click', () => {
+    display.textContent = display.textContent.slice(0, -1);
+    displayHistory.textContent = displayHistory.textContent.slice(0, -1);
+});
+
 function operate(operation, x, y){
     switch(operation){
         case '+':
-            return add(x, y);
+            return Math.round(add(x, y) * 100) / 100;
         case '-':
-            return subtract(x, y);
+            return Math.round(subtract(x, y) * 100) / 100;
         case 'x':
-            return multiply(x, y);
+            return Math.round(multiply(x, y) * 100) / 100;
         case '/':
-            return divide(x, y);
+            return Math.round(divide(x, y) * 100) / 100;
         default:
             return x;
     }
 }
 
 function add(x, y){
-    return parseInt(x) + parseInt(y);
+    return parseFloat(x) + parseFloat(y);
 }
 
 function subtract(x, y){
